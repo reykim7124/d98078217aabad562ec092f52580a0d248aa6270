@@ -111,6 +111,11 @@ const Modal = (props) => {
   ]
 
   const theme = useContext(ThemeContext)
+  const [search, setSearch] = useState("")
+
+  const handleSearch = (e) => {
+    setSearch(e.target.value)
+  }
 
   return (
     <div>
@@ -126,23 +131,25 @@ const Modal = (props) => {
 
               <div style={{position: 'relative'}}>
                 <InputPlaceIcon className='material-icons' lightRed={theme.lightRed}>location_on</InputPlaceIcon>
-                <LocationInput outline={theme.outline} lightRed={theme.lightRed} />
+                <LocationInput outline={theme.outline} lightRed={theme.lightRed} onChange={handleSearch} />
               </div>
 
-              <div style={{paddingLeft: '8px', paddingTop: '8px'}}>
-                { locations.map((item, i) => (
-                  <div key={i} style={{display: 'flex', marginTop: '16px'}}>
-                    <ListIcon subText={theme.subText}>
-                      <i className='material-icons'>place</i>
-                    </ListIcon>
-                    <ModalList outline={theme.outline}>
-                      <span className='modal-item--name'>{ item.name }</span>
-                      <span className='modal-item--street'>{ item.street }</span>
-                      <div style={{borderBottom: `1px solid ${theme.outline}`}}></div>
-                    </ModalList>
-                  </div>
-                )) }
-              </div>
+              {search.length > 3 &&
+                <div style={{paddingLeft: '8px', paddingTop: '8px'}}>
+                  { locations.map((item, i) => (
+                    <div key={i} style={{display: 'flex', marginTop: '16px'}}>
+                      <ListIcon subText={theme.subText}>
+                        <i className='material-icons'>place</i>
+                      </ListIcon>
+                      <ModalList outline={theme.outline}>
+                        <span className='modal-item--name'>{ item.name }</span>
+                        <span className='modal-item--street'>{ item.street }</span>
+                        <div style={{borderBottom: `1px solid ${theme.outline}`}}></div>
+                      </ModalList>
+                    </div>
+                  )) }
+                </div>
+              }
             </div>
           </ModalContainer>
         </ModalWrapper>
