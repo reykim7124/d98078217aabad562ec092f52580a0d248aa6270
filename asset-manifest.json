@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/kulina-preliminary/static/css/main.b181ae4c.chunk.css",
-    "main.js": "/kulina-preliminary/static/js/main.ee51af23.chunk.js",
-    "main.js.map": "/kulina-preliminary/static/js/main.ee51af23.chunk.js.map",
+    "main.js": "/kulina-preliminary/static/js/main.e9af7b70.chunk.js",
+    "main.js.map": "/kulina-preliminary/static/js/main.e9af7b70.chunk.js.map",
     "runtime-main.js": "/kulina-preliminary/static/js/runtime-main.d60c942e.js",
     "runtime-main.js.map": "/kulina-preliminary/static/js/runtime-main.d60c942e.js.map",
     "static/css/2.2c0ad480.chunk.css": "/kulina-preliminary/static/css/2.2c0ad480.chunk.css",
@@ -21,6 +21,6 @@
     "static/css/2.2c0ad480.chunk.css",
     "static/js/2.e2e1ae88.chunk.js",
     "static/css/main.b181ae4c.chunk.css",
-    "static/js/main.ee51af23.chunk.js"
+    "static/js/main.e9af7b70.chunk.js"
   ]
 }
