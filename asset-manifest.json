@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/kulina-preliminary/static/css/main.b181ae4c.chunk.css",
+    "main.js": "/kulina-preliminary/static/js/main.f60deae0.chunk.js",
+    "main.js.map": "/kulina-preliminary/static/js/main.f60deae0.chunk.js.map",
+    "runtime-main.js": "/kulina-preliminary/static/js/runtime-main.d60c942e.js",
+    "runtime-main.js.map": "/kulina-preliminary/static/js/runtime-main.d60c942e.js.map",
+    "static/css/2.2c0ad480.chunk.css": "/kulina-preliminary/static/css/2.2c0ad480.chunk.css",
+    "static/js/2.e2e1ae88.chunk.js": "/kulina-preliminary/static/js/2.e2e1ae88.chunk.js",
+    "static/js/2.e2e1ae88.chunk.js.map": "/kulina-preliminary/static/js/2.e2e1ae88.chunk.js.map",
+    "static/js/3.6431f855.chunk.js": "/kulina-preliminary/static/js/3.6431f855.chunk.js",
+    "static/js/3.6431f855.chunk.js.map": "/kulina-preliminary/static/js/3.6431f855.chunk.js.map",
+    "index.html": "/kulina-preliminary/index.html",
+    "static/css/2.2c0ad480.chunk.css.map": "/kulina-preliminary/static/css/2.2c0ad480.chunk.css.map",
+    "static/css/main.b181ae4c.chunk.css.map": "/kulina-preliminary/static/css/main.b181ae4c.chunk.css.map",
+    "static/js/2.e2e1ae88.chunk.js.LICENSE.txt": "/kulina-preliminary/static/js/2.e2e1ae88.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/kulina-preliminary/static/media/MaterialIcons-Regular.cff684e5.woff2"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d60c942e.js",
+    "static/css/2.2c0ad480.chunk.css",
+    "static/js/2.e2e1ae88.chunk.js",
+    "static/css/main.b181ae4c.chunk.css",
+    "static/js/main.f60deae0.chunk.js"
+  ]
+}
