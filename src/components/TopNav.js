@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { ThemeContext } from '../contexts/ThemeContext'
 import { ProductContext } from '../contexts/ProductContext'
 import ModalLocation from './ModalLocation'
@@ -52,12 +52,12 @@ const ButtonProductType = styled.button`
   }
 `
 
-function ProductToggle() {
+const ProductToggle = () => {
   const [color, toggleColor] = useState(true)
   const theme = useContext(ThemeContext)
   const { toggleMenu } = useContext(ProductContext)
 
-  function handleToggleColor(e) {
+  const handleToggleColor = (e) => {
     toggleColor(e)
     toggleMenu(e)
   }
@@ -84,15 +84,35 @@ function ProductToggle() {
 
 const TopNav = () =>  {
   const theme = useContext(ThemeContext)
+  const useHandleScroll = () => {
+    const [scrollPos, setScrollPos] = useState(0)
+    const [hideButton, setHideButton] = useState(true)
+
+    const handleScroll = () => {
+      setScrollPos(document.body.getBoundingClientRect().top)
+      setHideButton(document.body.getBoundingClientRect().top > scrollPos)
+    }
+    
+    useEffect(() => {
+      window.addEventListener('scroll', handleScroll)
+      return (
+        window.addEventListener('scroll', handleScroll)
+      )
+    })
+
+    return hideButton
+  }
   return (
     <Nav bg={theme.bg} outline={theme.outline}>
       <div className='modal-button'>
         <i className='material-icons' style={{color: theme.text}}>arrow_back</i>
         <ModalLocation />
       </div>
-      <div className='product-toggle'>
-        <ProductToggle />
-      </div>
+      {useHandleScroll() && 
+        <div className='product-toggle'>
+          <ProductToggle />
+        </div>
+      }
     </Nav>
   )
 }
