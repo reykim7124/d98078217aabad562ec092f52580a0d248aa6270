@@ -1,4 +1,4 @@
-import { Component } from 'react'
+import { useState, useContext } from 'react'
 import { ThemeContext } from '../contexts/ThemeContext'
 import styled from 'styled-components'
 
@@ -110,11 +110,13 @@ function Modal(props) {
     }
   ]
 
+  const theme = useContext(ThemeContext)
+
   return (
     <div>
       {props.toggle && 
-        <ModalWrapper text={props.text}>
-          <ModalContainer bg={props.bg}>
+        <ModalWrapper text={theme.text}>
+          <ModalContainer bg={theme.bg}>
             <div style={{display: 'flex', padding: '8px 16px'}}>
               <i style={{marginLeft: 'auto', cursor: 'pointer', fontSize: '2rem'}} className='material-icons' onClick={props.close}>close</i>
             </div>
@@ -123,20 +125,20 @@ function Modal(props) {
               <h2 style={{margin: '0'}}>Cek makanan yang tersedia di lokasi kamu</h2>
 
               <div style={{position: 'relative'}}>
-                <InputPlaceIcon className='material-icons' lightRed={props.lightRed}>location_on</InputPlaceIcon>
-                <LocationInput outline={props.outline} lightRed={props.lightRed} />
+                <InputPlaceIcon className='material-icons' lightRed={theme.lightRed}>location_on</InputPlaceIcon>
+                <LocationInput outline={theme.outline} lightRed={theme.lightRed} />
               </div>
 
               <div style={{paddingLeft: '8px', paddingTop: '8px'}}>
                 { locations.map((item, i) => (
                   <div key={i} style={{display: 'flex', marginTop: '16px'}}>
-                    <ListIcon subText={props.subText}>
+                    <ListIcon subText={theme.subText}>
                       <i className='material-icons'>place</i>
                     </ListIcon>
-                    <ModalList outline={props.outline}>
+                    <ModalList outline={theme.outline}>
                       <span className='modal-item--name'>{ item.name }</span>
                       <span className='modal-item--street'>{ item.street }</span>
-                      <div style={{borderBottom: `1px solid ${props.outline}`}}></div>
+                      <div style={{borderBottom: `1px solid ${theme.outline}`}}></div>
                     </ModalList>
                   </div>
                 )) }
@@ -149,38 +151,26 @@ function Modal(props) {
   )
 }
 
-class ModalLocation extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      modal: false,
+const ModalLocation = () => {
+    const theme = useContext(ThemeContext)
+    const [modal, toggleModal] = useState(false)
+
+    function handleToggleModal(e) {
+      toggleModal(e)
     }
-    this.toggleModal = this.toggleModal.bind(this)
-  }
 
-  toggleModal() {
-    const setModal = !this.state.modal
-    this.setState({
-      modal: setModal
-    })
-  }
-
-  render() {
-    const { text, subText, lightRed, bg, outline } = this.context
     return (
       <div>
-        <ModalButton text={text} onClick={this.toggleModal}>
-          <label style={{fontSize: '0.75rem', color: subText}}>ALAMAT PENGANTARAN</label>
+        <ModalButton text={theme.text} onClick={() => handleToggleModal(true)}>
+          <label style={{fontSize: '0.75rem', color: theme.subText}}>ALAMAT PENGANTARAN</label>
           <span style={{display: 'flex', alignItems: 'center'}}>
             <label style={{fontWeight: '600'}}>Tokopedia Tower</label>
-            <i className='material-icons' style={{color: lightRed, fontSize: '1.75rem'}}>expand_more</i>
+            <i className='material-icons' style={{color: theme.lightRed, fontSize: '1.75rem'}}>expand_more</i>
           </span>
         </ModalButton>
-        <Modal toggle={this.state.modal} close={() => this.toggleModal()} bg={bg} text={text} outline={outline} lightRed={lightRed} subText={subText} />
+        <Modal toggle={modal} close={() => handleToggleModal(false)} />
       </div>
     )
-  }
 }
 
-ModalLocation.contextType = ThemeContext
 export default ModalLocation
