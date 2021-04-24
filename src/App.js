@@ -1,17 +1,30 @@
-import { Component } from 'react'
-import ThemeContextProvider from './contexts/ThemeContext'
+import { useState } from 'react'
+import { ThemeContext, theme } from './contexts/ThemeContext'
+import { ProductContext, menu } from './contexts/ProductContext'
 import TopNav from './components/TopNav'
+import ProductList from './components/ProductList'
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <ThemeContextProvider>
-          <TopNav />
-        </ThemeContextProvider>
-      </div>
-    )
+const App = () => {
+  const [selectedMenu, toggleMenu] = useState(menu.lunch)
+
+  function handleToggleMenu(e) {
+    if (e) {
+      toggleMenu(menu.lunch)
+    } else {
+      toggleMenu(menu.dinner)
+    }
   }
+
+  return (
+    <div>
+      <ThemeContext.Provider value={{...theme}}>
+        <ProductContext.Provider value={{menu: [...selectedMenu], toggleMenu: handleToggleMenu}}>
+          <TopNav />
+          <ProductList /> 
+        </ProductContext.Provider>
+      </ThemeContext.Provider>
+    </div>
+  )
 }
 
 export default App
