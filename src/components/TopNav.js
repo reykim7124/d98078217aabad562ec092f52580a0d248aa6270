@@ -1,5 +1,6 @@
 import { useState, useContext } from 'react'
 import { ThemeContext } from '../contexts/ThemeContext'
+import { ProductContext } from '../contexts/ProductContext'
 import ModalLocation from './ModalLocation'
 import styled from 'styled-components'
 
@@ -20,13 +21,13 @@ const Nav = styled.nav`
   & > .product-toggle {
     display: flex;
     justify-content: center;
-    margin-top: 8px;
+    margin: 8px 0;
+    padding: 0 8px;
   }
 `
 
 const ButtonProductWrapper = styled.div`
   width: 100%;
-  max-width: 300px;
   display: flex;
   height: 40px;
   border: 1px solid ${props => props.outline};
@@ -38,8 +39,9 @@ const ButtonProductType = styled.button`
   color: ${props => props.subText};
   background-color: ${props => props.bg};
   flex-grow: 1;
-  font-size: 16px;
+  font-size: 0.875rem;
   font-weight: 600;
+  cursor: pointer;
 
   &:first-child {
     border-radius: 10px 0 0 10px;
@@ -51,26 +53,28 @@ const ButtonProductType = styled.button`
 `
 
 function ProductToggle() {
-  const [menu, toggleMenu] = useState(true)
+  const [color, toggleColor] = useState(true)
   const theme = useContext(ThemeContext)
+  const { toggleMenu } = useContext(ProductContext)
 
-  function handleToggleMenu(e) {
+  function handleToggleColor(e) {
+    toggleColor(e)
     toggleMenu(e)
   }
 
   return (
     <ButtonProductWrapper outline={theme.outline}>
       <ButtonProductType 
-        subText={menu ? theme.bg : theme.subText}
-        bg={menu ? theme.text : theme.bg}
-        onClick={() => handleToggleMenu(true)}
+        subText={color ? theme.bg : theme.subText}
+        bg={color ? theme.text : theme.bg}
+        onClick={() => handleToggleColor(true)}
       >
         Lunch
       </ButtonProductType>
       <ButtonProductType 
-        subText={menu ? theme.subText : theme.bg}
-        bg={menu ? theme.bg : theme.text}
-        onClick={() => handleToggleMenu(false)}
+        subText={color ? theme.subText : theme.bg}
+        bg={color ? theme.bg : theme.text}
+        onClick={() => handleToggleColor(false)}
       >
         Dinner
       </ButtonProductType>
@@ -82,11 +86,11 @@ const TopNav = () =>  {
   const theme = useContext(ThemeContext)
   return (
     <Nav bg={theme.bg} outline={theme.outline}>
-      <div className="modal-button">
-        <i className="material-icons" style={{color: theme.text}}>arrow_back</i>
+      <div className='modal-button'>
+        <i className='material-icons' style={{color: theme.text}}>arrow_back</i>
         <ModalLocation />
       </div>
-      <div className="product-toggle">
+      <div className='product-toggle'>
         <ProductToggle />
       </div>
     </Nav>
