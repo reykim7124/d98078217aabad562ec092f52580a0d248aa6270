@@ -7,7 +7,7 @@ import ProductList from './components/ProductList'
 const App = () => {
   const [selectedMenu, toggleMenu] = useState(menu.lunch)
 
-  function handleToggleMenu(e) {
+  const handleToggleMenu = (e) => {
     if (e) {
       toggleMenu(menu.lunch)
     } else {

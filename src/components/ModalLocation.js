@@ -90,7 +90,7 @@ const ModalList = styled.div`
   }
 `
 
-function Modal(props) {
+const Modal = (props) => {
   const locations = [
     {
       name: 'Kulina',
@@ -155,7 +155,7 @@ const ModalLocation = () => {
     const theme = useContext(ThemeContext)
     const [modal, toggleModal] = useState(false)
 
-    function handleToggleModal(e) {
+    const handleToggleModal = (e) => {
       toggleModal(e)
     }
 
