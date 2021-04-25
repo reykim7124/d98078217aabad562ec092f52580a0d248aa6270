@@ -8,8 +8,9 @@ import styled from 'styled-components'
 const Nav = styled.nav`
   background-color: ${props => props.bg};
   z-index: 2;
-  position: fixed;
-  width: 100vw;
+  position: sticky;
+  left: 0;
+  right: 0;
   top: 0;
 
   & .modal-button {
@@ -18,39 +19,49 @@ const Nav = styled.nav`
     padding: 16px 8px;
   }
 
-  & .product-toggle.show {
+  & .product-toggle {
     display: flex;
     justify-content: center;
-    margin: 8px 0;
-    padding: 0 8px;
-    display: block;
+    margin-top: 8px;
+    padding: 0 8px 8px 8px;
   }
 
-  & .product-toggle {
+  & .product-toggle.hide {
     display: none;
   }
 `
 
 const TopNav = () =>  {
   const theme = useContext(ThemeContext)
-  const useHandleScroll = () => {
-    const [scrollPos, setScrollPos] = useState(0)
-    const [hideButton, setHideButton] = useState(true)
 
+  const HandleHideOnScroll = () => {
+    const [hide, setHide] = useState(true);
+    let prevScrollpos;
+  
     const handleScroll = () => {
-      setScrollPos(document.body.getBoundingClientRect().top)
-      setHideButton(document.body.getBoundingClientRect().top > scrollPos)
-    }
-    
+      const currentScrollpos = window.pageYOffset;
+      if (prevScrollpos === undefined) {
+        prevScrollpos = window.pageYOffset;
+      }
+      if (currentScrollpos > prevScrollpos) {
+        setHide(false);
+        prevScrollpos = currentScrollpos;
+      } else if (currentScrollpos < prevScrollpos) {
+        setHide(true);
+        prevScrollpos = currentScrollpos;
+      }
+    };
+  
     useEffect(() => {
-      window.addEventListener('scroll', handleScroll)
-      return (
-        window.addEventListener('scroll', handleScroll)
-      )
-    })
+      window.addEventListener("scroll", handleScroll);
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
+    });
 
-    return hideButton
+    return hide
   }
+
   return (
     <Nav bg={theme.bg}>
       <div style={{borderBottom: `1px solid ${theme.outline}`}}>
@@ -60,7 +71,7 @@ const TopNav = () =>  {
         </div>
         <Calendar />
       </div>
-      <div className={`product-toggle ${useHandleScroll() ? 'show': ''}`}>
+      <div className={`product-toggle ${HandleHideOnScroll() ? '' : 'hide'}`}>
         <ProductToggle />
       </div>
     </Nav>
