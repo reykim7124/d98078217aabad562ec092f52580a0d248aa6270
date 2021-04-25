@@ -9,6 +9,8 @@ const CartWrapper = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
+  display: flex;
+  justify-content: center;
 `
 
 const CartContainer = styled.div`
@@ -16,6 +18,7 @@ const CartContainer = styled.div`
   background-color: ${props => props.darkRed};
   color: white;
   width: 100%;
+  max-width: 345px;
   box-sizing: border-box;
   padding: 8px;
   display: flex;

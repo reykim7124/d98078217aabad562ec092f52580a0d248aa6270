@@ -3,25 +3,23 @@ import { ThemeContext } from '../contexts/ThemeContext'
 import styled from 'styled-components'
 
 const ModalWrapper = styled.div`
-  position: fixed;
+  position: absolute;
   right: 0;
   height: 100vh;
+  width: 100%;
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
   color: ${props => props.text};
 `
 
 const ModalContainer = styled.div`
   border-radius: 15px 15px 0 0;
-  height: 90%;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  position: fixed;
+  margin-top: auto;
+  height: 85%;
   background-color: ${props => props.bg};
-  transition: height .2s ease-in-out;
-  
 `
 
 const ModalButton = styled.button`
@@ -163,6 +161,7 @@ const ModalLocation = () => {
     const [modal, toggleModal] = useState(false)
 
     const handleToggleModal = (e) => {
+      document.body.style.overflowY = e ? 'hidden' : 'auto'
       toggleModal(e)
     }
 
