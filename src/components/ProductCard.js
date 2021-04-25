@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { ThemeContext } from '../contexts/ThemeContext'
+import { ProductContext } from '../contexts/ProductContext'
 import styled from 'styled-components'
 
 const Card = styled.div`
@@ -46,6 +47,7 @@ const AddToCartButton = styled.button`
 
 const ProductCard = (props) => {
   const theme = useContext(ThemeContext)
+  const { addToCart } = useContext(ProductContext)
   const ratings = ['star', 'star', 'star', 'star', 'star_half']
   return (
     <Card shadow={theme.shadow}>
@@ -62,8 +64,8 @@ const ProductCard = (props) => {
         <div style={{fontWeight: '600', color: theme.text, margin: '8px 0'}}>{ props.title }</div>
         <div style={{fontSize: '0.875rem', color: theme.subText}}>by { props.author }</div>
         <PriceButtonWrapper text={theme.text}>
-          <span className='price'>Rp { props.price }</span>
-          <AddToCartButton bg={theme.bg} lightRed={theme.lightRed}>Add <i className='material-icons'>add</i></AddToCartButton>
+          <span className='price'>{ new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumSignificantDigits: 3 }).format(props.price) }</span>
+          <AddToCartButton bg={theme.bg} lightRed={theme.lightRed} onClick={() => addToCart(props.price)}>Add <i className='material-icons'>add</i></AddToCartButton>
         </PriceButtonWrapper>
       </div>
     </Card>
