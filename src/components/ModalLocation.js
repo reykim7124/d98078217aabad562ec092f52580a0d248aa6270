@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 const ModalWrapper = styled.div`
   position: fixed;
-  width: 100vw;
+  right: 0;
   height: 100vh;
   top: 0;
   left: 0;
@@ -14,8 +14,8 @@ const ModalWrapper = styled.div`
 
 const ModalContainer = styled.div`
   border-radius: 15px 15px 0 0;
-  height: 90vh;
-  width: 100vw;
+  height: 90%;
+  right: 0;
   bottom: 0;
   left: 0;
   position: fixed;
@@ -123,7 +123,7 @@ const Modal = (props) => {
         <ModalWrapper text={theme.text}>
           <ModalContainer bg={theme.bg}>
             <div style={{display: 'flex', padding: '8px 16px'}}>
-              <i style={{marginLeft: 'auto', cursor: 'pointer', fontSize: '2rem'}} className='material-icons' onClick={props.close}>close</i>
+              <i style={{marginLeft: 'auto', cursor: 'pointer', fontSize: '2rem'}} className='material-icons' onClick={() => {props.close(); setSearch("");}}>close</i>
             </div>
 
             <div style={{padding: '16px'}}>
