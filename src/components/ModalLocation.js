@@ -169,10 +169,10 @@ const ModalLocation = () => {
     return (
       <div>
         <ModalButton text={theme.text} onClick={() => handleToggleModal(true)}>
-          <label style={{fontSize: '0.5rem', color: theme.subText}}>ALAMAT PENGANTARAN</label>
-          <span style={{display: 'flex', alignItems: 'center'}}>
-            <label style={{fontWeight: '600', fontSize: '1rem'}}>Tokopedia Tower</label>
-            <i className='material-icons' style={{color: theme.lightRed, fontSize: '1.4rem'}}>expand_more</i>
+          <label style={{fontSize: '0.5rem', color: theme.subText, cursor: 'inherit'}}>ALAMAT PENGANTARAN</label>
+          <span style={{display: 'flex', alignItems: 'center', cursor: 'inherit'}}>
+            <label style={{fontWeight: '600', fontSize: '1rem', cursor: 'inherit'}}>Tokopedia Tower</label>
+            <i className='material-icons' style={{color: theme.lightRed, fontSize: '1.4rem', cursor: 'inherit'}}>expand_more</i>
           </span>
         </ModalButton>
         <Modal toggle={modal} close={() => handleToggleModal(false)} />
