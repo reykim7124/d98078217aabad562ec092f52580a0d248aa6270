@@ -50,7 +50,7 @@ const Calendar = () => {
   const theme = useContext(ThemeContext)
   const { now, calendar, setCurrentDate } = useContext(CalendarContext)
 
-  const useHorizontalScroll = () => {
+  const HandleHorizontalScroll = () => {
     const elRef = useRef();
     useEffect(() => {
       const el = elRef.current;
@@ -72,7 +72,7 @@ const Calendar = () => {
 
   return(
     <div style={{padding: '0 8px'}}>
-      <CalendarContainer ref={useHorizontalScroll()}>
+      <CalendarContainer ref={HandleHorizontalScroll()}>
         {calendar.map((item, i) => (
           <CalendarItems 
             text={theme.text}

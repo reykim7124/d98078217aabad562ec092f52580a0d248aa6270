@@ -6,7 +6,7 @@ import { CalendarContext } from '../contexts/CalendarContext'
 import ProductCard from './ProductCard'
 
 const ProductWrapper = styled.div`
-  padding: 8px 16px 16px 16px;
+  padding: 16px;
 
   & .date-container {
     font-weight: 600;

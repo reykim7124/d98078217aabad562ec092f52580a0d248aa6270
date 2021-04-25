@@ -43,6 +43,10 @@ const AddToCartButton = styled.button`
     font-size: 1.25rem;
     margin-left: 4px;
   }
+
+  &:hover {
+    cursor: pointer;
+  }
 `
 
 const ProductCard = (props) => {

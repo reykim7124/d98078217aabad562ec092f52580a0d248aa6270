@@ -14,14 +14,12 @@ const ModalWrapper = styled.div`
 
 const ModalContainer = styled.div`
   border-radius: 15px 15px 0 0;
-  height: 90%;
   right: 0;
   bottom: 0;
   left: 0;
   position: fixed;
+  height: 90%;
   background-color: ${props => props.bg};
-  transition: height .2s ease-in-out;
-  
 `
 
 const ModalButton = styled.button`
