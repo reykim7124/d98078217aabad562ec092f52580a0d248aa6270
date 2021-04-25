@@ -8,6 +8,7 @@ const CalendarContainer = styled.div`
   scrollbar-width: none;
   white-space: nowrap;
   display: flex;
+  min-height: 63px;
 
   &::-webkit-scrollbar {
     width: 0px;
