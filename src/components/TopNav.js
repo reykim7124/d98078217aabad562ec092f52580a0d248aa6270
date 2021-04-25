@@ -18,11 +18,18 @@ const Nav = styled.nav`
     padding: 16px;
   }
 
-  & > .product-toggle {
+  & > .product-toggle.show {
     display: flex;
     justify-content: center;
     margin: 8px 0;
     padding: 0 8px;
+    visibility: visible;
+    height: initial;
+  }
+
+  & > .product-toggle {
+    visibility: hidden;
+    height: 0;
   }
 `
 
@@ -107,12 +114,10 @@ const TopNav = () =>  {
       <div className='modal-button'>
         <i className='material-icons' style={{color: theme.text}}>arrow_back</i>
         <ModalLocation />
+      </div> 
+      <div className={`product-toggle ${useHandleScroll() ? 'show': ''}`}>
+        <ProductToggle />
       </div>
-      {useHandleScroll() && 
-        <div className='product-toggle'>
-          <ProductToggle />
-        </div>
-      }
     </Nav>
   )
 }
