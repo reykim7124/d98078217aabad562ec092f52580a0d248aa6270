@@ -68,7 +68,7 @@ const ProductCard = (props) => {
         <div style={{fontWeight: '600', color: theme.text, margin: '8px 0'}}>{ props.title }</div>
         <div style={{fontSize: '0.875rem', color: theme.subText}}>by { props.author }</div>
         <PriceButtonWrapper text={theme.text}>
-          <span className='price'>{ new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumSignificantDigits: 3 }).format(props.price) }</span>
+          <span className='price'>{ new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR'}).format(props.price) }</span>
           <AddToCartButton bg={theme.bg} lightRed={theme.lightRed} onClick={() => addToCart(props.price)}>Add <i className='material-icons'>add</i></AddToCartButton>
         </PriceButtonWrapper>
       </div>
