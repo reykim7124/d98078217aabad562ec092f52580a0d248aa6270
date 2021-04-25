@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/index.css"],"names":[],"mappings":"AAEA,UACE,SAAU,CAEV,eAAmB,CACnB,sBACF","file":"main.8f83efec.chunk.css","sourcesContent":["@import '~material-design-icons/iconfont/material-icons.css';\n\nbody, html {\n  padding: 0;\n  margin: 0;\n  margin-bottom: 25px;\n  font-family: sans-serif;\n}"]}
