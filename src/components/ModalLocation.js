@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 const ModalWrapper = styled.div`
   position: fixed;
-  width: 100vw;
+  right: 0;
   height: 100vh;
   top: 0;
   left: 0;
@@ -14,8 +14,8 @@ const ModalWrapper = styled.div`
 
 const ModalContainer = styled.div`
   border-radius: 15px 15px 0 0;
-  height: 90vh;
-  width: 100vw;
+  height: 90%;
+  right: 0;
   bottom: 0;
   left: 0;
   position: fixed;
@@ -111,6 +111,11 @@ const Modal = (props) => {
   ]
 
   const theme = useContext(ThemeContext)
+  const [search, setSearch] = useState("")
+
+  const handleSearch = (e) => {
+    setSearch(e.target.value)
+  }
 
   return (
     <div>
@@ -118,7 +123,7 @@ const Modal = (props) => {
         <ModalWrapper text={theme.text}>
           <ModalContainer bg={theme.bg}>
             <div style={{display: 'flex', padding: '8px 16px'}}>
-              <i style={{marginLeft: 'auto', cursor: 'pointer', fontSize: '2rem'}} className='material-icons' onClick={props.close}>close</i>
+              <i style={{marginLeft: 'auto', cursor: 'pointer', fontSize: '2rem'}} className='material-icons' onClick={() => {props.close(); setSearch("");}}>close</i>
             </div>
 
             <div style={{padding: '16px'}}>
@@ -126,23 +131,25 @@ const Modal = (props) => {
 
               <div style={{position: 'relative'}}>
                 <InputPlaceIcon className='material-icons' lightRed={theme.lightRed}>location_on</InputPlaceIcon>
-                <LocationInput outline={theme.outline} lightRed={theme.lightRed} />
+                <LocationInput outline={theme.outline} lightRed={theme.lightRed} onChange={handleSearch} />
               </div>
 
-              <div style={{paddingLeft: '8px', paddingTop: '8px'}}>
-                { locations.map((item, i) => (
-                  <div key={i} style={{display: 'flex', marginTop: '16px'}}>
-                    <ListIcon subText={theme.subText}>
-                      <i className='material-icons'>place</i>
-                    </ListIcon>
-                    <ModalList outline={theme.outline}>
-                      <span className='modal-item--name'>{ item.name }</span>
-                      <span className='modal-item--street'>{ item.street }</span>
-                      <div style={{borderBottom: `1px solid ${theme.outline}`}}></div>
-                    </ModalList>
-                  </div>
-                )) }
-              </div>
+              {search.length > 3 &&
+                <div style={{paddingLeft: '8px', paddingTop: '8px'}}>
+                  { locations.map((item, i) => (
+                    <div key={i} style={{display: 'flex', marginTop: '16px'}}>
+                      <ListIcon subText={theme.subText}>
+                        <i className='material-icons'>place</i>
+                      </ListIcon>
+                      <ModalList outline={theme.outline}>
+                        <span className='modal-item--name'>{ item.name }</span>
+                        <span className='modal-item--street'>{ item.street }</span>
+                        <div style={{borderBottom: `1px solid ${theme.outline}`}}></div>
+                      </ModalList>
+                    </div>
+                  )) }
+                </div>
+              }
             </div>
           </ModalContainer>
         </ModalWrapper>
@@ -162,10 +169,10 @@ const ModalLocation = () => {
     return (
       <div>
         <ModalButton text={theme.text} onClick={() => handleToggleModal(true)}>
-          <label style={{fontSize: '0.75rem', color: theme.subText}}>ALAMAT PENGANTARAN</label>
-          <span style={{display: 'flex', alignItems: 'center'}}>
-            <label style={{fontWeight: '600'}}>Tokopedia Tower</label>
-            <i className='material-icons' style={{color: theme.lightRed, fontSize: '1.75rem'}}>expand_more</i>
+          <label style={{fontSize: '0.5rem', color: theme.subText, cursor: 'inherit'}}>ALAMAT PENGANTARAN</label>
+          <span style={{display: 'flex', alignItems: 'center', cursor: 'inherit'}}>
+            <label style={{fontWeight: '600', fontSize: '1rem', cursor: 'inherit'}}>Tokopedia Tower</label>
+            <i className='material-icons' style={{color: theme.lightRed, fontSize: '1.4rem', cursor: 'inherit'}}>expand_more</i>
           </span>
         </ModalButton>
         <Modal toggle={modal} close={() => handleToggleModal(false)} />
