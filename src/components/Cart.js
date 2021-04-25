@@ -39,8 +39,7 @@ const Cart = (props) => {
               { new Intl.NumberFormat('id-ID', 
                 { 
                   style: 'currency', 
-                  currency: 'IDR', 
-                  maximumSignificantDigits: 3 
+                  currency: 'IDR'
                   }
                 ).format(props.items.reduce((a, b) => a + b, 0)) }
               </span>
